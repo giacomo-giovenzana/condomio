@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170626204127) do
+ActiveRecord::Schema.define(version: 20170627210324) do
 
   create_table "admin_area_level1s", force: :cascade do |t|
     t.string "name"
@@ -30,13 +30,30 @@ ActiveRecord::Schema.define(version: 20170626204127) do
     t.index ["admin_area_level1_id"], name: "index_admin_area_level2s_on_admin_area_level1_id"
   end
 
-  create_table "administrative_area_level1s", force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.string "short_name", default: ""
-    t.integer "country_id"
+  create_table "apartment_owners", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "apartment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["country_id"], name: "index_administrative_area_level1s_on_country_id"
+    t.index ["apartment_id"], name: "index_apartment_owners_on_apartment_id"
+    t.index ["user_id"], name: "index_apartment_owners_on_user_id"
+  end
+
+  create_table "apartments", force: :cascade do |t|
+    t.string "name"
+    t.integer "division_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["division_id"], name: "index_apartments_on_division_id"
+  end
+
+  create_table "building_admins", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "building_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["building_id"], name: "index_building_admins_on_building_id"
+    t.index ["user_id"], name: "index_building_admins_on_user_id"
   end
 
   create_table "buildings", force: :cascade do |t|
@@ -52,11 +69,29 @@ ActiveRecord::Schema.define(version: 20170626204127) do
     t.index ["locality_id"], name: "index_buildings_on_locality_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.integer "ticket_id"
+    t.integer "user_id"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_comments_on_ticket_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "countries", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "short_name", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "divisions", force: :cascade do |t|
+    t.string "name"
+    t.integer "building_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["building_id"], name: "index_divisions_on_building_id"
   end
 
   create_table "localities", force: :cascade do |t|
@@ -66,6 +101,21 @@ ActiveRecord::Schema.define(version: 20170626204127) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_area_level2_id"], name: "index_localities_on_admin_area_level2_id"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.integer "reporter_id"
+    t.integer "assignee_id"
+    t.integer "building_id"
+    t.string "title"
+    t.string "description"
+    t.integer "severity"
+    t.string "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assignee_id"], name: "index_tickets_on_assignee_id"
+    t.index ["building_id"], name: "index_tickets_on_building_id"
+    t.index ["reporter_id"], name: "index_tickets_on_reporter_id"
   end
 
   create_table "users", force: :cascade do |t|

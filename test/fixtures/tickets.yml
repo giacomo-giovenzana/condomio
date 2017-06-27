@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  user: one
+  building: one
+  title: MyString
+  description: MyString
+  severity: 1
+  state: MyString
+
+two:
+  user: two
+  user: two
+  building: two
+  title: MyString
+  description: MyString
+  severity: 1
+  state: MyString
