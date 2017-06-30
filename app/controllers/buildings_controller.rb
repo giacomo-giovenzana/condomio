@@ -29,10 +29,8 @@ class BuildingsController < ApplicationController
     respond_to do |format|
       if @building.save
         format.html { redirect_to @building, notice: 'Building was successfully created.' }
-        format.json { render :show, status: :created, location: @building }
       else
         format.html { render :new }
-        format.json { render json: @building.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,10 +41,8 @@ class BuildingsController < ApplicationController
     respond_to do |format|
       if @building.update(building_params)
         format.html { redirect_to @building, notice: 'Building was successfully updated.' }
-        format.json { render :show, status: :ok, location: @building }
       else
         format.html { render :edit }
-        format.json { render json: @building.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,7 +53,6 @@ class BuildingsController < ApplicationController
     @building.destroy
     respond_to do |format|
       format.html { redirect_to buildings_url, notice: 'Building was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -69,6 +64,6 @@ class BuildingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def building_params
-      params.require(:building).permit(:route, :street_number, :postal_code, :hamlet, :latitude, :longitude, :locality_id)
+      params.require(:building).permit(:name, :route, :street_number, :postal_code, :hamlet, :latitude, :longitude, :locality_id)
     end
 end

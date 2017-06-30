@@ -1,6 +1,7 @@
 class CreateBuildings < ActiveRecord::Migration[5.1]
   def change
     create_table :buildings do |t|
+      t.string :name
       t.string :route
       t.string :street_number
       t.string :postal_code
