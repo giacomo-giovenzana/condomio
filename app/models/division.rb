@@ -1,4 +1,4 @@
 class Division < ApplicationRecord
   belongs_to :building
-  has_many :apartment
+  has_many :apartments
 end

@@ -16,40 +16,42 @@
     <%= form.text_field :name, id: :building_name %>
   </div>
 
-  <div class="field">
-    <%= form.label :route %>
-    <%= form.text_field :route, id: :building_route %>
-  </div>
-
-  <div class="field">
-    <%= form.label :street_number %>
-    <%= form.text_field :street_number, id: :building_street_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :postal_code %>
-    <%= form.text_field :postal_code, id: :building_postal_code %>
-  </div>
-
-  <div class="field">
-    <%= form.label :hamlet %>
-    <%= form.text_field :hamlet, id: :building_hamlet %>
-  </div>
-
-  <div class="field">
-    <%= form.label :latitude %>
-    <%= form.text_field :latitude, id: :building_latitude %>
-  </div>
-
-  <div class="field">
-    <%= form.label :longitude %>
-    <%= form.text_field :longitude, id: :building_longitude %>
-  </div>
-
-  <div class="field">
-    <%= form.label :locality_id %>
-    <%= form.text_field :locality_id, id: :building_locality_id %>
-  </div>
+  <%= form.fields_for :addresses do |address| %>
+	<div class="field">
+      <%= address.label :locality %>
+      <%= address.text_field :locality %>
+	</div>
+	
+	<div class="field">
+      <%= address.label :short_name %>
+      <%= address.text_field :short_name %>
+	</div>
+	
+	<div class="field">
+      <%= address.label :route %>
+      <%= address.text_field :route %>
+	</div>
+	
+	<div class="field">
+      <%= address.label :street_number %>
+      <%= address.text_field :street_number %>
+	</div>
+	
+	<div class="field">
+      <%= address.label :postal_code %>
+      <%= address.text_field :postal_code %>
+	</div>
+	
+	<div class="field">
+      <%= address.label :latitude %>
+      <%= address.text_field :latitude %>
+	</div>
+	
+	<div class="field">
+      <%= address.label :longitude %>
+      <%= address.text_field :longitude %>
+	</div>	
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>

@@ -1,4 +1,4 @@
 class ApartmentOwner < ApplicationRecord
   belongs_to :user
-  belongs_to :apartment
+  belongs_to :apartments
 end
