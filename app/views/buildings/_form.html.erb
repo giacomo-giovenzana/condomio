@@ -16,42 +16,34 @@
     <%= form.text_field :name, id: :building_name %>
   </div>
 
-  <%= form.fields_for :addresses do |address| %>
-	<div class="field">
-      <%= address.label :locality %>
-      <%= address.text_field :locality %>
-	</div>
-	
-	<div class="field">
-      <%= address.label :short_name %>
-      <%= address.text_field :short_name %>
-	</div>
-	
-	<div class="field">
-      <%= address.label :route %>
-      <%= address.text_field :route %>
-	</div>
-	
-	<div class="field">
-      <%= address.label :street_number %>
-      <%= address.text_field :street_number %>
-	</div>
-	
-	<div class="field">
-      <%= address.label :postal_code %>
-      <%= address.text_field :postal_code %>
-	</div>
-	
-	<div class="field">
-      <%= address.label :latitude %>
-      <%= address.text_field :latitude %>
-	</div>
-	
-	<div class="field">
-      <%= address.label :longitude %>
-      <%= address.text_field :longitude %>
-	</div>	
-  <% end %>
+  Addresses:
+    <ul>
+      <%= form.fields_for :addresses do |address_form| %>
+        <li>
+          <%= address_form.label :route %>
+          <%= address_form.text_field :route %>
+ 
+          <%= address_form.label :street_number %>
+          <%= address_form.text_field :street_number %>
+		  
+          <%= address_form.label :locality %>
+          <%= address_form.text_field :locality %>
+		  
+          <%= address_form.label :postal_code %>
+          <%= address_form.text_field :postal_code %>
+		  
+          <%= address_form.label :province %>
+          <%= address_form.text_field :province %>
+		  
+          <%= address_form.label :region %>
+          <%= address_form.text_field :region %>
+		  
+          <%= address_form.label :country %>
+          <%= address_form.text_field :country %>
+		  
+        </li>
+      <% end %>
+    </ul>
 
   <div class="actions">
     <%= form.submit %>

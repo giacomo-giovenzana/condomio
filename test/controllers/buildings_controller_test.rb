@@ -17,7 +17,7 @@ class BuildingsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create building" do
     assert_difference('Building.count') do
-      post buildings_url, params: { building: { hamlet: @building.hamlet, latitude: @building.latitude, locality_id: @building.locality_id, longitude: @building.longitude, postal_code: @building.postal_code, route: @building.route, street_number: @building.street_number } }
+      post buildings_url, params: { building: { address_id: @building.address_id, name: @building.name } }
     end
 
     assert_redirected_to building_url(Building.last)
@@ -34,7 +34,7 @@ class BuildingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update building" do
-    patch building_url(@building), params: { building: { hamlet: @building.hamlet, latitude: @building.latitude, locality_id: @building.locality_id, longitude: @building.longitude, postal_code: @building.postal_code, route: @building.route, street_number: @building.street_number } }
+    patch building_url(@building), params: { building: { address_id: @building.address_id, name: @building.name } }
     assert_redirected_to building_url(@building)
   end
 

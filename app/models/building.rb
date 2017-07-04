@@ -1,6 +1,4 @@
 class Building < ApplicationRecord
-  belongs_to :address
-  has_many :divisions
-  has_many :building_admins
-  accepts_nested_attributes_for :address
+  has_many :addresses
+  accepts_nested_attributes_for :addresses, allow_destroy: true
 end

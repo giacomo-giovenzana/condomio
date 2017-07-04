@@ -10,111 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630203036) do
+ActiveRecord::Schema.define(version: 20170704203715) do
 
   create_table "addresses", force: :cascade do |t|
+    t.string "country"
+    t.string "country_short"
+    t.string "region"
+    t.string "region_short"
+    t.string "province"
+    t.string "province_short"
     t.string "locality"
-    t.string "short_name"
+    t.string "hamlet"
     t.string "route"
     t.string "street_number"
     t.string "postal_code"
     t.decimal "latitude", precision: 10, scale: 6
     t.decimal "longitude", precision: 10, scale: 6
-    t.integer "admin_area_level2_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["admin_area_level2_id"], name: "index_addresses_on_admin_area_level2_id"
-  end
-
-  create_table "admin_area_level1s", force: :cascade do |t|
-    t.string "name"
-    t.string "short_name"
-    t.integer "country_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["country_id"], name: "index_admin_area_level1s_on_country_id"
-  end
-
-  create_table "admin_area_level2s", force: :cascade do |t|
-    t.string "name"
-    t.string "short_name"
-    t.integer "admin_area_level1_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["admin_area_level1_id"], name: "index_admin_area_level2s_on_admin_area_level1_id"
-  end
-
-  create_table "apartment_owners", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "apartment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["apartment_id"], name: "index_apartment_owners_on_apartment_id"
-    t.index ["user_id"], name: "index_apartment_owners_on_user_id"
-  end
-
-  create_table "apartments", force: :cascade do |t|
-    t.string "name"
-    t.integer "division_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["division_id"], name: "index_apartments_on_division_id"
-  end
-
-  create_table "building_admins", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "building_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["building_id"], name: "index_building_admins_on_building_id"
-    t.index ["user_id"], name: "index_building_admins_on_user_id"
+    t.index ["building_id"], name: "index_addresses_on_building_id"
   end
 
   create_table "buildings", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_buildings_on_address_id"
-  end
-
-  create_table "comments", force: :cascade do |t|
-    t.integer "ticket_id"
-    t.integer "user_id"
-    t.string "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["ticket_id"], name: "index_comments_on_ticket_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
-  create_table "countries", force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.string "short_name", default: ""
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "divisions", force: :cascade do |t|
-    t.string "name"
-    t.integer "building_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["building_id"], name: "index_divisions_on_building_id"
-  end
-
-  create_table "tickets", force: :cascade do |t|
-    t.integer "reporter_id"
-    t.integer "assignee_id"
-    t.integer "building_id"
-    t.string "title"
-    t.string "description"
-    t.integer "severity"
-    t.string "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["assignee_id"], name: "index_tickets_on_assignee_id"
-    t.index ["building_id"], name: "index_tickets_on_building_id"
-    t.index ["reporter_id"], name: "index_tickets_on_reporter_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,21 +1,31 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  admin_area_level2: one
+  country: MyString
+  country_short: MyString
+  region: MyString
+  region_short: MyString
+  province: MyString
+  province_short: MyString
   locality: MyString
-  short_name: MyString
+  hamlet: MyString
   route: MyString
   street_number: MyString
-  postal_code: MyString
+  postal_code: 
   latitude: 9.99
   longitude: 9.99
 
 two:
-  admin_area_level2: two
+  country: MyString
+  country_short: MyString
+  region: MyString
+  region_short: MyString
+  province: MyString
+  province_short: MyString
   locality: MyString
-  short_name: MyString
+  hamlet: MyString
   route: MyString
   street_number: MyString
-  postal_code: MyString
+  postal_code: 
   latitude: 9.99
   longitude: 9.99
